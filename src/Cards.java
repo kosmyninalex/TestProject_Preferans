@@ -1,4 +1,4 @@
-public enum Card {
+public enum Cards {
 
     SPADES_7(Suit.SPADES, Rank.SEVEN),
     CLUBS_7(Suit.CLUBS, Rank.SEVEN),
@@ -43,10 +43,12 @@ public enum Card {
     private Suit suit;
     private Rank rank;
 
-    Card(Suit suit, Rank rank) {
+    Cards(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }
+
+
 
     public Suit getSuit() {
         return suit;
