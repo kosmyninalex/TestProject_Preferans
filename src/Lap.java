@@ -3,6 +3,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 
+
+// Class creates a new "subGame", e.g. : choosing a new dealer, creating a new cardset, assigning Cards.
 public class Lap {
     private Bid bid;
     private ArrayList<Player> players = new ArrayList<Player>();
@@ -10,13 +12,20 @@ public class Lap {
     private HashSet<Cards> playerCardses = new HashSet<Cards>();
     private Contract contract;
     private PlayersBids playersBids;
-    static Player dealer;
+    private Player dealer;
+
+    private static Player dealerGlobal = null;
 
     private HashSet <Cards> set1 = new HashSet<>();
     private HashSet <Cards> set2 = new HashSet<>();
     private HashSet <Cards> set3 = new HashSet<>();
     private HashSet <Cards> set4 = new HashSet<>();
 
+    public Lap(ArrayList<Player> players)
+    {
+        this.players = players;
+        nextDealer();
+    }
     // Method for picking a random card from a Cards enum
     private Cards randomCard() {
         Cards[] cardses = Cards.values();
@@ -34,14 +43,10 @@ public class Lap {
       //  System.out.println (playerCardses.toString());
     }
 
-    private void setDealer ()
+
+    public Player getDealer ()
     {
-        Random random = new Random();
-        int playerNumber = random.nextInt(3);
-
-
-
-
+        return dealer;
     }
 
 
@@ -50,7 +55,7 @@ public class Lap {
 
     //Method for assigning cards to players
 
-    public void assignCards (ArrayList<Player> players)
+    public void assignCards ()
     {
         createCardsSet();
         for (Player player: players)
@@ -90,5 +95,42 @@ public class Lap {
             System.out.println (cardSet);
         }
 
+    }
+
+    public void nextDealer ()
+    {
+        if (dealerGlobal == null) {
+            Random random = new Random();
+            int dealerNumber = random.nextInt(4);
+
+            dealerGlobal = players.get(dealerNumber);
+            dealer = dealerGlobal;
+            System.out.println("Assigned dealer number is " + dealerNumber);
+            System.out.println ("Dealer is " + dealer );
+            System.out.println ("Dealer global is " + dealerGlobal );
+
+        }
+
+        else
+        {
+            int nextDealer;
+            int previousDealer = dealerGlobal.getPlace().ordinal();
+            if (previousDealer == 3)
+            {
+                nextDealer = 0;
+            }
+            else
+            {
+                nextDealer = previousDealer++;
+            }
+            dealerGlobal = players.get(nextDealer);
+            dealer = dealerGlobal;
+            //players.get(nextDealer).setDealer();
+        }
+
+   /*     for (Player player: players)
+        {
+            System.out.println (player + " dealer status is " + player.isDealer());
+        }*/
     }
 }

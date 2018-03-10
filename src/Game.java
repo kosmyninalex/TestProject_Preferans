@@ -3,6 +3,7 @@ import java.util.*;
 public class Game {
 
     public ArrayList<Player> players;
+    public static Player dealer = null;
 
     public static void main(String[] args) {
         Player firstPlayer = new Player("Ilya");
@@ -27,8 +28,17 @@ public class Game {
         System.out.println (cardSet.set3);
         System.out.println (cardSet.set4);*/
 
-        Lap lap = new Lap();
-        lap.assignCards(game.players);
+        Lap lap1 = new Lap(game.players);
+       // lap1.assignCards();
+        Lap lap2 = new Lap(game.players);
+       // lap2.assignCards();
+        Lap lap3 = new Lap(game.players);
+      //  lap3.assignCards();
+
+        System.out.println ("Testing dealers assignment--------------");
+        System.out.println (lap1.getDealer());
+        System.out.println (lap2.getDealer());
+        System.out.println (lap3.getDealer());
 
 
 
@@ -41,10 +51,16 @@ public class Game {
 
         for (int i = 0; i < game.players.size(); i++) {
             System.out.println("Player " + game.players.get(i).toString() + " place is " + game.players.get(i).getPlace());
-
-
-
         }
 
+        Contract contract = new Contract();
+        contract.biddingOrder(game.players);
 
-}}
+        GameType gameType = new GameType();
+
+
+
+}
+
+
+}

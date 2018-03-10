@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameType {
     private static int maxPoints = 0;
@@ -26,6 +27,9 @@ public class GameType {
     {
         GameType.maxRounds = maxRounds;
     }
+
+
+
 
 
 }

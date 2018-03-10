@@ -29,6 +29,15 @@ public class Player {
         isDealer = true;
     }
 
+    public boolean isDealer ()
+    {
+        if (isDealer)
+        {
+            return true;
+        }
+        else return false;
+    }
+
     public Place getPlace()
     {
         return place;
@@ -38,6 +47,8 @@ public class Player {
     {
         this.place = place;
     }
+
+
 
     public String toString ()
     {
