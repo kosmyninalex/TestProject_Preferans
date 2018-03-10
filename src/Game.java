@@ -39,10 +39,6 @@ public class Game
 
         }
 
-        Contract contract = new Contract();
-
-        while (true){
-        contract.setContract();}
 
 
 
@@ -52,4 +48,3 @@ public class Game
 
 
     }
-}
