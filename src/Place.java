@@ -1,3 +1,3 @@
 public enum Place{
-    LEFT, CENTER, RIGHT
+    NORTH, EAST, SOUTH, WEST
 }

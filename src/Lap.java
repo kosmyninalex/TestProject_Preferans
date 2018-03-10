@@ -8,7 +8,9 @@ public class Lap {
     private ArrayList<Player> players = new ArrayList<Player>();
     private ArrayList<Cards> bank = new ArrayList<Cards>();
     private HashSet<Cards> playerCardses = new HashSet<Cards>();
-
+    private Contract contract;
+    private PlayersBids playersBids;
+    static Player dealer;
 
     private HashSet <Cards> set1 = new HashSet<>();
     private HashSet <Cards> set2 = new HashSet<>();
@@ -16,12 +18,13 @@ public class Lap {
     private HashSet <Cards> set4 = new HashSet<>();
 
     // Method for picking a random card from a Cards enum
-    final Cards randomCard() {
+    private Cards randomCard() {
         Cards[] cardses = Cards.values();
         Random random = new Random();
         return cardses[random.nextInt(cardses.length)];
     }
 
+    // Creating random card Set of 32 cards from Cards enum
     private void createCardsSet ()
     {
         while (playerCardses.size() < 32)
@@ -31,9 +34,21 @@ public class Lap {
       //  System.out.println (playerCardses.toString());
     }
 
+    private void setDealer ()
+    {
+        Random random = new Random();
+        int playerNumber = random.nextInt(3);
+
+
+
+
+    }
+
 
     private ArrayList <CardSet> playerCardsList = new ArrayList<CardSet>();
 
+
+    //Method for assigning cards to players
 
     public void assignCards (ArrayList<Player> players)
     {
@@ -46,6 +61,7 @@ public class Lap {
 
         Iterator<Cards> iterator = playerCardses.iterator();
 
+        // Giving two cards to each player on each turn. Putting two cards to buy-in after second turn
         for (int i = 0; i < 5; i++)
         {
             set1.add(iterator.next());

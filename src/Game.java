@@ -1,17 +1,17 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
-public class Game
-{
-    public static void main (String [] args)
-    {
+public class Game {
+
+    public ArrayList<Player> players;
+
+    public static void main(String[] args) {
         Player firstPlayer = new Player("Ilya");
         Player secondPlayer = new Player("Dobrynya");
         Player thirdPlayer = new Player("Alyosha");
         Player fourthPlayer = new Player("Captain America");
+        Game game = new Game();
 
-        ArrayList<Player> players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
-
+        game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
 
 
 //        GameType.createGame(args[0], args[1]); // Creating new game according to arguments
@@ -28,23 +28,23 @@ public class Game
         System.out.println (cardSet.set4);*/
 
         Lap lap = new Lap();
-        lap.assignCards(players);
+        lap.assignCards(game.players);
+
 
 
         Bid bid2 = Bid.EIGHT_CLUB;
         Bid bid1 = Bid.EIGHT_NO_TRUMP;
-        if (bid1.ordinal() > bid2.ordinal())
-        {
-            System.out.println (bid1 + " > " + bid2);
+        if (bid1.ordinal() > bid2.ordinal()) {
+            System.out.println(bid1 + " > " + bid2);
+
+        }
+
+        for (int i = 0; i < game.players.size(); i++) {
+            System.out.println("Player " + game.players.get(i).toString() + " place is " + game.players.get(i).getPlace());
+
+
 
         }
 
 
-
-
-
-
-
-
-
-    }
+}}
