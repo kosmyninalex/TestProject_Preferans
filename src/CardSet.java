@@ -1,8 +1,5 @@
 import java.util.HashSet;
 
-/**
- * Created by Admin on 3/7/2018.
- */
 public class CardSet {
     // тут храним сгенернные для раунда наборы карт игрока
     private Player player;

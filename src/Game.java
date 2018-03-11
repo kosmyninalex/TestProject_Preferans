@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Game {
 
-    public ArrayList<Player> players;
+    public static ArrayList<Player> players;
     public static Player dealer = null;
 
     public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Game {
         Player fourthPlayer = new Player("Captain America");
         Game game = new Game();
 
-        game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
+        Game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
 
 
 //        GameType.createGame(args[0], args[1]); // Creating new game according to arguments
@@ -28,11 +28,11 @@ public class Game {
         System.out.println (cardSet.set3);
         System.out.println (cardSet.set4);*/
 
-        Lap lap1 = new Lap(game.players);
+        Lap lap1 = new Lap(Game.players);
        // lap1.assignCards();
-        Lap lap2 = new Lap(game.players);
+        Lap lap2 = new Lap(Game.players);
        // lap2.assignCards();
-        Lap lap3 = new Lap(game.players);
+        Lap lap3 = new Lap(Game.players);
       //  lap3.assignCards();
 
         System.out.println ("Testing dealers assignment--------------");
@@ -49,12 +49,14 @@ public class Game {
 
         }
 
-        for (int i = 0; i < game.players.size(); i++) {
-            System.out.println("Player " + game.players.get(i).toString() + " place is " + game.players.get(i).getPlace());
+        for (int i = 0; i < Game.players.size(); i++) {
+            System.out.println("Player " + Game.players.get(i).toString() + " place is " + Game.players.get(i).getPlace());
         }
 
         Contract contract = new Contract();
-        contract.biddingOrder(game.players);
+        contract.biddingOrder();
+
+        contract.bidding();
 
         GameType gameType = new GameType();
 

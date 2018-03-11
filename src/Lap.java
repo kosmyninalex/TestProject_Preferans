@@ -14,7 +14,7 @@ public class Lap {
     private PlayersBids playersBids;
     private Player dealer;
 
-    private static Player dealerGlobal = null;
+    public static Player dealerGlobal = null;
 
     private HashSet <Cards> set1 = new HashSet<>();
     private HashSet <Cards> set2 = new HashSet<>();
@@ -129,6 +129,7 @@ public class Lap {
             dealerGlobal = dealer;
 
         }
+
 }
 
     private Player getPlayerByPlace (Place place)

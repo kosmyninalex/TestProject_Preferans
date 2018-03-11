@@ -5,12 +5,15 @@ public class PlayersBids {
     private ArrayList<Bid> bids;
 
     public PlayersBids(Player player)
-    {}
+    {
+        this.player = player;
+    }
 
     public void addBid (Bid bid)
     {
         bids.add(bid);
     }
+
 
 
 }

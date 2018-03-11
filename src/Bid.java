@@ -30,6 +30,10 @@ public enum Bid {
     TEN_NO_TRUMP(10, null),
 
     MISER(0, null),
+    MISER_NO_BUYIN(0, null),
+    NINE_NO_BUYIN(9, null),
+    TEN_NO_BUYIN(10, null),
+
     PASS(null, null),
     WHIST(null, null);
 
