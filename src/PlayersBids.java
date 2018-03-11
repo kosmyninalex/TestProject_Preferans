@@ -14,6 +14,11 @@ public class PlayersBids {
         bids.add(bid);
     }
 
+    public Player getPlayer()
+    {
+        return player;
+    }
+
 
 
 }

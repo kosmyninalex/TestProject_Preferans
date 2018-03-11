@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class Contract {
-    private Bid bid;
-    private Player lastBidder;
+    private Bid winningBid;
+    private Player winningBidder;
     private ArrayList<PlayersBids> playersBidsList;
     private int contractTurns;
     ArrayList<Player> biddingOrder;
@@ -45,7 +45,7 @@ public class Contract {
 
 
     //Method for clockwise selecting a next Bidder in this contract
-    public Player nextBidder ()
+ /*   public Player nextBidder ()
     {
         int nextBidderIndex;
         int previousBidderIndex;
@@ -72,29 +72,36 @@ public class Contract {
             nextBidderIndex++;
         }
         return biddingOrder.get(nextBidderIndex);
-    }
+    }*/
 
     public void bidding ()
     {
 
-        ArrayList <Player> playersTurns = (ArrayList<Player>) Game.players.clone();
-        System.out.println (Game.players);
-        System.out.println (playersTurns);
+        setContractTurns();
+        biddingOrder();
+
+        biddingOrder.remove(Lap.dealerGlobal);
+
+        for (Player player: biddingOrder) {
+            playersBidsList.add(new PlayersBids(player));
+        }
 
 
         for (int i=0; i < contractTurns; i++)
         {
-            Bid newBid = randomBid();
-            for (int j=0; j < 3; j++)
+            for (PlayersBids playersBids: playersBidsList)
             {
-                if (bid == null)
+                Bid newBid = randomBid();
+
+                while (newBid.ordinal() < winningBid.ordinal())
                 {
-                    bid = newBid;
+                    newBid = randomBid();
                 }
-                else
-                {
-                    if (newBid.ordinal() > bid.ordinal())
-                }
+
+                    winningBid = newBid;
+                    playersBids.addBid(newBid);
+                    winningBidder = playersBids.getPlayer();
+
 
             }
 
@@ -108,4 +115,4 @@ public class Contract {
 
 
 
-}
+

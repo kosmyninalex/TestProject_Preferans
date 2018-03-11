@@ -10,7 +10,7 @@ public class Player {
     private int centerWhist;
     private int rightWhist;
 
-    private boolean isDealer = false;
+ //   private boolean isDealer = false;
     private Place place;
 
     public Player (String name)
@@ -24,7 +24,7 @@ public class Player {
         return this.name;
     }
 
-    public void setDealer()
+/*    public void setDealer()
     {
         isDealer = true;
     }
@@ -36,7 +36,7 @@ public class Player {
             return true;
         }
         else return false;
-    }
+    }*/
 
     public Place getPlace()
     {
