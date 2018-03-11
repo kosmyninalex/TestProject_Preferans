@@ -121,16 +121,25 @@ public class Lap {
             }
             else
             {
-                nextDealer = previousDealer++;
+                nextDealer = ++previousDealer;
             }
-            dealerGlobal = players.get(nextDealer);
-            dealer = dealerGlobal;
-            //players.get(nextDealer).setDealer();
-        }
+            Place nextPlace = Place.values()[nextDealer];
+            System.out.println (nextPlace);
+            dealer = getPlayerByPlace(nextPlace);
+            dealerGlobal = dealer;
 
-   /*     for (Player player: players)
+        }
+}
+
+    private Player getPlayerByPlace (Place place)
+    {
+        for (Player player: players)
         {
-            System.out.println (player + " dealer status is " + player.isDealer());
-        }*/
+            if (player.getPlace() == place)
+            {
+                return player;
+            }
+        }
+        return null;
     }
 }
