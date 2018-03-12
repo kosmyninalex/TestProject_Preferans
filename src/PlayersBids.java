@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class PlayersBids {
     private Player player;
-    private ArrayList<Bid> bids;
+    private ArrayList<Bid> bids = new ArrayList<Bid>();
 
     public PlayersBids(Player player)
     {
@@ -17,6 +17,17 @@ public class PlayersBids {
     public Player getPlayer()
     {
         return player;
+    }
+
+    @Override
+    public String toString ()
+    {
+        String res = "";
+        for (Bid bid: bids)
+        {
+            res = res + " " + bid;
+        }
+        return player + " his bids are: " + bids;
     }
 
 

@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class Contract {
-    private Bid winningBid;
+    private Bid winningBid = null;
     private Player winningBidder;
-    private ArrayList<PlayersBids> playersBidsList;
+    private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
     private int contractTurns;
     ArrayList<Player> biddingOrder;
 
@@ -18,10 +16,10 @@ public class Contract {
     }
 
     // Method for picking a bid from "Bid" enum
-    private Bid randomBid() {
+    private Bid randomBid(int randValue) {
         Bid[] bid = Bid.values();
         Random random = new Random();
-        return bid[random.nextInt(bid.length)];
+        return bid[random.nextInt(bid.length - randValue) + randValue];
     }
 
 
@@ -78,34 +76,48 @@ public class Contract {
     {
 
         setContractTurns();
+        System.out.println ("Number of contract turns is " + contractTurns);
         biddingOrder();
 
         biddingOrder.remove(Lap.dealerGlobal);
+
+        System.out.println (biddingOrder);
+        System.out.println (biddingOrder.size());
 
         for (Player player: biddingOrder) {
             playersBidsList.add(new PlayersBids(player));
         }
 
-
         for (int i=0; i < contractTurns; i++)
-        {
+        {Bid newBid = randomBid(0);
+
             for (PlayersBids playersBids: playersBidsList)
             {
-                Bid newBid = randomBid();
 
-                while (newBid.ordinal() < winningBid.ordinal())
+//                System.out.println (newBid);
+
+                if (winningBid == null)
                 {
-                    newBid = randomBid();
+                    winningBid = newBid;
+                }
+
+                while (newBid.ordinal() <= winningBid.ordinal())
+                {
+                    newBid = randomBid(winningBid.ordinal());
                 }
 
                     winningBid = newBid;
                     playersBids.addBid(newBid);
                     winningBidder = playersBids.getPlayer();
+//                if (winningBid == Bid.MISER)
+                    
 
 
             }
+            System.out.println (playersBidsList);
 
-            }
+
+        }
 
             // creation of bids set for each player for this contract
 
