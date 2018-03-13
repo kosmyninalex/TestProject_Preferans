@@ -1,18 +1,24 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game {
 
     public static ArrayList<Player> players;
     public static Player dealer = null;
+   // public static FileWriter
 
     public static void main(String[] args) {
+        Logging.logEvent("Initializing four players");
         Player firstPlayer = new Player("Ilya");
         Player secondPlayer = new Player("Dobrynya");
         Player thirdPlayer = new Player("Alyosha");
-        Player fourthPlayer = new Player("Captain America");
+        Player fourthPlayer = new Player("Gunslinger");
+
         Game game = new Game();
 
         Game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
+
+        Logging.logEvent("Players are: " + Game.players);
 
 
 //        GameType.createGame(args[0], args[1]); // Creating new game according to arguments
@@ -65,4 +71,5 @@ public class Game {
 }
 
 
-}
+    }
+

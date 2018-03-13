@@ -1,4 +1,7 @@
 public enum Bid {
+    PASS(null, null),
+    WHIST(null, null),
+
     SIX_SPADE(6, Suit.SPADES),
     SIX_CLUB(6, Suit.CLUBS),
     SIX_DIAMOND(6, Suit.DIAMONDS),
@@ -17,6 +20,9 @@ public enum Bid {
     EIGHT_HEART(8, Suit.HEARTS),
     EIGHT_NO_TRUMP(8, null),
 
+
+    MISER(0, null),
+
     NINE_SPADE(9, Suit.SPADES),
     NINE_CLUB(9, Suit.CLUBS),
     NINE_DIAMOND(9, Suit.DIAMONDS),
@@ -29,13 +35,11 @@ public enum Bid {
     TEN_HEART(10, Suit.HEARTS),
     TEN_NO_TRUMP(10, null),
 
-    MISER(0, null),
     MISER_NO_BUYIN(0, null),
     NINE_NO_BUYIN(9, null),
-    TEN_NO_BUYIN(10, null),
+    TEN_NO_BUYIN(10, null);
 
-    PASS(null, null),
-    WHIST(null, null);
+
 
     private Bid (Integer tricksNumber, Suit trumpSuit) {
         this.tricksNumber = tricksNumber;

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class PlayersBids {
     private Player player;
     private ArrayList<Bid> bids = new ArrayList<Bid>();
+    private boolean isPass = false;
+    private boolean isMisere = false;
 
     public PlayersBids(Player player)
     {
@@ -18,6 +20,8 @@ public class PlayersBids {
     {
         return player;
     }
+
+
 
     @Override
     public String toString ()

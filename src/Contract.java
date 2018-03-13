@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Contract {
@@ -91,8 +92,10 @@ public class Contract {
         for (int i=0; i < contractTurns; i++)
         {Bid newBid = randomBid(0);
 
-            for (PlayersBids playersBids: playersBidsList)
+            Iterator<PlayersBids> iterator = playersBidsList.iterator();
+            while (iterator.hasNext())
             {
+                PlayersBids playersBids = iterator.next();
 
 //                System.out.println (newBid);
 
@@ -100,19 +103,25 @@ public class Contract {
                 {
                     winningBid = newBid;
                 }
+                else {
 
-                while (newBid.ordinal() <= winningBid.ordinal())
-                {
-                    newBid = randomBid(winningBid.ordinal());
+                    while (newBid.ordinal() <= winningBid.ordinal()) {
+                        newBid = randomBid(winningBid.ordinal());
+                    }
                 }
-
-                    winningBid = newBid;
+                if (newBid == Bid.PASS)
+                {
                     playersBids.addBid(newBid);
+                    iterator.remove();
+                }
+                else {
+                    winningBid = newBid;
                     winningBidder = playersBids.getPlayer();
 //                if (winningBid == Bid.MISER)
-                    
+                    playersBids.addBid(newBid);
 
 
+                }
             }
             System.out.println (playersBidsList);
 
