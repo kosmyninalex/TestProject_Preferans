@@ -12,7 +12,7 @@ public class Player {
 
  //   private boolean isDealer = false;
     private Place place;
-
+//creation of a new Player with given name and a random place returned by takingSeats() method
     public Player (String name)
     {
         this.name = name;
@@ -23,20 +23,6 @@ public class Player {
     {
         return this.name;
     }
-
-/*    public void setDealer()
-    {
-        isDealer = true;
-    }
-
-    public boolean isDealer ()
-    {
-        if (isDealer)
-        {
-            return true;
-        }
-        else return false;
-    }*/
 
     public Place getPlace()
     {

@@ -1,4 +1,6 @@
 public enum Bid {
+
+    // enum with possible bids in each game
     PASS(null, null),
     WHIST(null, null),
 

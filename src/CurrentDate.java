@@ -9,3 +9,5 @@ public class CurrentDate {
             return dtf.format(now);
         }
 }
+
+// Class with getDate method for receiving current system date

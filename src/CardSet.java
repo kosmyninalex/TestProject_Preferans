@@ -1,7 +1,7 @@
 import java.util.HashSet;
 
 public class CardSet {
-    // тут храним сгенернные для раунда наборы карт игрока
+    // here stored cards corresponding to players in each lap
     private Player player;
     private HashSet<Cards> cardsSet = new HashSet<Cards>();
 

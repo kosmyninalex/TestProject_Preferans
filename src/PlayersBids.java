@@ -21,6 +21,31 @@ public class PlayersBids {
         return player;
     }
 
+    public ArrayList<Bid> getBids ()
+    {
+        return bids;
+    }
+
+    public boolean getPassStatus()
+    {
+        return isPass;
+    }
+
+    public boolean getMisereStatus()
+    {
+        return isMisere;
+    }
+
+    public void setPassStatus()
+    {
+        isPass = true;
+    }
+
+    public void setMisereStatus()
+    {
+       isMisere = true;
+    }
+
 
 
     @Override

@@ -14,7 +14,7 @@ public class Lap {
     private PlayersBids playersBids;
     private Player dealer;
 
-    public static Player dealerGlobal = null;
+    public static Player dealerGlobal = null; //here stored dealer from last lap, so dealer for the next Lap will be chosen using clockwise method nextDealer
 
     private HashSet <Cards> set1 = new HashSet<>();
     private HashSet <Cards> set2 = new HashSet<>();
@@ -97,6 +97,7 @@ public class Lap {
 
     }
 
+    //method for choosing a new dealer for the game
     public void nextDealer ()
     {
         if (dealerGlobal == null) {

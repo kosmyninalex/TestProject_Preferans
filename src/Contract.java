@@ -73,9 +73,10 @@ public class Contract {
         return biddingOrder.get(nextBidderIndex);
     }*/
 
+
+// This is old bidding method
     public void bidding ()
     {
-
         setContractTurns();
         System.out.println ("Number of contract turns is " + contractTurns);
         biddingOrder();
@@ -97,6 +98,19 @@ public class Contract {
             {
                 PlayersBids playersBids = iterator.next();
 
+                switch (newBid)
+                {
+                    case MISER:
+                        if (playersBids.getBids().size() == 0)
+                        playersBids.setMisereStatus();
+                        break;
+                    case PASS:
+                        playersBids.setPassStatus();
+                        break;
+                    default:
+                        break;
+                }
+
 //                System.out.println (newBid);
 
                 if (winningBid == null)
@@ -104,7 +118,6 @@ public class Contract {
                     winningBid = newBid;
                 }
                 else {
-
                     while (newBid.ordinal() <= winningBid.ordinal()) {
                         newBid = randomBid(winningBid.ordinal());
                     }
@@ -132,7 +145,7 @@ public class Contract {
 
         }
 
-    }
+}
 
 
 

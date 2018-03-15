@@ -1,5 +1,5 @@
 public enum Cards {
-
+// Enum with every card from Preferans
     SPADES_7(Suit.SPADES, Rank.SEVEN),
     CLUBS_7(Suit.CLUBS, Rank.SEVEN),
     DIAMONDS_7(Suit.DIAMONDS, Rank.SEVEN),

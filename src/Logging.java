@@ -1,8 +1,4 @@
 import java.io.*;
-
-/**
- * Created by Admin on 3/14/2018.
- */
 public class Logging {
    // private static int eventID = 0;
     private static String fileName = "log.txt";
@@ -24,3 +20,5 @@ public class Logging {
 
     }
 }
+
+//Class with logging method that prints String argument to constole and append its as a new line to the end of flie
