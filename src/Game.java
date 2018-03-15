@@ -19,16 +19,16 @@ public class Game {
 
         Lap lap1 = new Lap(Game.players);
         lap1.assignCards();
-        Lap lap2 = new Lap(Game.players);
+      /*  Lap lap2 = new Lap(Game.players);
         lap2.assignCards();
         Lap lap3 = new Lap(Game.players);
-        lap3.assignCards();
+        lap3.assignCards();*/
 
         System.out.println ("Testing dealers assignment--------------");
         System.out.println (lap1.getDealer());
-        System.out.println (lap2.getDealer());
+  /*      System.out.println (lap2.getDealer());
         System.out.println (lap3.getDealer());
-
+*/
 
         for (int i = 0; i < Game.players.size(); i++) {
             System.out.println("Player " + Game.players.get(i).toString() + " place is " + Game.players.get(i).getPlace());

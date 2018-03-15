@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Contract {
-    private Bid winningBid = null;
+    private Bid winningBid = Bid.SIX_SPADE;
     private Player winningBidder;
     private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
     private int contractTurns;
@@ -20,7 +20,18 @@ public class Contract {
     private Bid randomBid(int randValue) {
         Bid[] bid = Bid.values();
         Random random = new Random();
-        return bid[random.nextInt(bid.length - randValue) + randValue];
+        if (randValue == 17) //checking if its miser
+        {
+            return bid[random.nextInt(bid.length - randValue) + randValue];
+        }
+        else
+        {
+            System.out.println (bid.length);
+            System.out.println (Bid.TEN_NO_BUYIN.ordinal());
+          //  System.out.println (bid.)
+            return bid[random.nextInt(bid.length - randValue) + randValue];
+        }
+
     }
 
 
@@ -73,9 +84,51 @@ public class Contract {
         return biddingOrder.get(nextBidderIndex);
     }*/
 
+ public void bidding ()
+ {
+     setContractTurns();
+     biddingOrder();
+
+     for (Player player: biddingOrder) {
+         playersBidsList.add(new PlayersBids(player));
+     }
+
+     Bid newBid1 = randomBid(winningBid.ordinal());
+     Bid newBid2 = randomBid(newBid1.ordinal());
+     Bid newBid3 = randomBid(newBid2.ordinal());
+
+     playersBidsList.get(0).addBid(newBid1);
+     playersBidsList.get(1).addBid(newBid2);
+     playersBidsList.get(2).addBid(newBid3);
+
+     System.out.println (newBid1);
+     System.out.println (newBid2);
+     System.out.println (newBid3);
+
+
+     if ((newBid1 == Bid.PASS) && (newBid2 == Bid.PASS) && (newBid2 == Bid.PASS))
+     {
+         Logging.logEvent("passes start");
+      //   PlayType.play(pass);
+     }
+     else
+         if ((newBid1 == Bid.MISER) || (newBid2 == Bid.MISER) || (newBid3 == Bid.MISER))
+         {
+             Logging.logEvent("miser start");
+        //     PlayType.play(miser);
+         }
+         else
+         {
+             Logging.logEvent("trick start");
+          //   PlayType.play(tricks);
+         }
+
+
+ }
+
 
 // This is old bidding method
-    public void bidding ()
+   /* public void bidding ()
     {
         setContractTurns();
         System.out.println ("Number of contract turns is " + contractTurns);
@@ -83,7 +136,7 @@ public class Contract {
 
         biddingOrder.remove(Lap.dealerGlobal);
 
-        System.out.println (biddingOrder);
+        System.out.println ("Bidding order is " + biddingOrder);
         System.out.println (biddingOrder.size());
 
         for (Player player: biddingOrder) {
@@ -143,7 +196,7 @@ public class Contract {
 
             // creation of bids set for each player for this contract
 
-        }
+        }*/
 
 }
 
