@@ -17,20 +17,6 @@ public class Game {
 
         Logging.logEvent("Players are: " + Game.players);
 
-
-//        GameType.createGame(args[0], args[1]); // Creating new game according to arguments
-
-
-        // следующий набор методов будет включен в розыгрыш (раздача, торговля, тип игры, запись очков)
-/*        CardSet cardSet = new CardSet();
-        cardSet.createCardsSet();
-        cardSet.assignCards();
-        System.out.println ("-------------");
-        System.out.println (cardSet.set1);
-        System.out.println (cardSet.set2);
-        System.out.println (cardSet.set3);
-        System.out.println (cardSet.set4);*/
-
         Lap lap1 = new Lap(Game.players);
         lap1.assignCards();
         Lap lap2 = new Lap(Game.players);

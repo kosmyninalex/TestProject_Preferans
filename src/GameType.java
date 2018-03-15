@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-import java.util.Random;
-
+// Not used------------------
+// Not ready. Class for creation a game according to input arguments:
 public class GameType {
     private static int maxPoints = 0;
     private static int maxRounds = 0;
 
     private ArrayList <Lap> laps = new ArrayList<>();
-
+// creating game with final condition: maximum points or maximum rounds (Laps)
     public static void createGame (String type, String number)
     {
         switch (type)
