@@ -8,6 +8,7 @@ public class Contract {
     private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
     private int contractTurns;
     ArrayList<Player> biddingOrder;
+    private boolean isMiserGame = false;
 
     private void setContractTurns ()
     {
@@ -20,8 +21,9 @@ public class Contract {
     private Bid randomBid(int randValue) {
         Bid[] bid = Bid.values();
         Random random = new Random();
-        if (randValue == 17) //checking if its miser
+        if ((randValue == 17) || (isMiserGame == true)) //checking if its miser
         {
+            isMiserGame = true;
             return bid[random.nextInt(bid.length - randValue) + randValue];
         }
         else
@@ -29,7 +31,7 @@ public class Contract {
             System.out.println (bid.length);
             System.out.println (Bid.TEN_NO_BUYIN.ordinal());
           //  System.out.println (bid.)
-            return bid[random.nextInt(bid.length - randValue) + randValue];
+            return bid[random.nextInt(bid.length - randValue) + randValue -3];
         }
 
     }
