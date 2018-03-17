@@ -37,6 +37,8 @@ public class Game {
         Contract contract = new Contract();
         contract.biddingOrder();
 
+
+        for (int i = 0; i < 200; i++)
         contract.bidding();
 
         GameType gameType = new GameType();

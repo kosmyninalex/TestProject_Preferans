@@ -1,8 +1,7 @@
 public enum Bid {
 
     // enum with possible bids in each game
-    PASS(null, null),
-    WHIST(null, null),
+
 
     SIX_SPADE(6, Suit.SPADES),
     SIX_CLUB(6, Suit.CLUBS),
@@ -36,6 +35,10 @@ public enum Bid {
     TEN_DIAMOND(10, Suit.DIAMONDS),
     TEN_HEART(10, Suit.HEARTS),
     TEN_NO_TRUMP(10, null),
+
+
+    WHIST(null, null),
+    PASS(null, null),
 
     MISER_NO_BUYIN(0, null),
     NINE_NO_BUYIN(9, null),

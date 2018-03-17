@@ -1,38 +1,65 @@
+import com.oracle.tools.packager.Log;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
 public class Contract {
-    private Bid winningBid = Bid.SIX_SPADE;
+    private static Bid winningBid = Bid.SIX_SPADE;
     private Player winningBidder;
     private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
     private int contractTurns;
     ArrayList<Player> biddingOrder;
-    private boolean isMiserGame = false;
+    private static boolean isMiserGame = false;
+    private static boolean isTricksGame = false;
 
     private void setContractTurns ()
     {
         // choosing a random iterations number of bidding between players.
         Random random = new Random();
-        contractTurns = 1 + random.nextInt(3); //All values for "n" are chosen arbitrarily
+        contractTurns = 1 + random.nextInt(3); // value for "n" is chosen arbitrarily
     }
 
     // Method for picking a bid from "Bid" enum
-    private Bid randomBid(int randValue) {
+    private static Bid randomBid() {
         Bid[] bid = Bid.values();
+        int randValue = winningBid.ordinal();
+        Bid newBid = null;
+
+     //   randValue++; //getting next value
         Random random = new Random();
-        if ((randValue == 17) || (isMiserGame == true)) //checking if its miser
-        {
-            isMiserGame = true;
-            return bid[random.nextInt(bid.length - randValue) + randValue];
-        }
-        else
-        {
-            System.out.println (bid.length);
-            System.out.println (Bid.TEN_NO_BUYIN.ordinal());
-          //  System.out.println (bid.)
-            return bid[random.nextInt(bid.length - randValue) + randValue -3];
-        }
+      if (((randValue == 15) || (isMiserGame == true)))
+      {
+          isMiserGame = true;
+          newBid = bid[random.nextInt(4) + 27];
+          if ((newBid.ordinal() > winningBid.ordinal()) && (newBid != Bid.PASS) )
+          {
+              winningBid = newBid;
+              return newBid;
+          }
+          else
+              {
+                  return Bid.PASS;
+              }
+      }
+      else
+      {
+          newBid = bid[random.nextInt(28)];
+          if ((newBid == Bid.WHIST) && (isTricksGame == false))
+          {
+              return Bid.PASS;
+          }
+
+          if ((newBid.ordinal() > winningBid.ordinal()) && (newBid != Bid.PASS) )
+          {
+              winningBid = newBid;
+              return newBid;
+          }
+          else
+          {
+              return Bid.PASS;
+          }
+      }
 
     }
 
@@ -90,25 +117,30 @@ public class Contract {
  {
      setContractTurns();
      biddingOrder();
+     isMiserGame = false;
 
      for (Player player: biddingOrder) {
          playersBidsList.add(new PlayersBids(player));
      }
+     winningBid = Bid.SIX_SPADE;
+     System.out.println ("New contract");
 
-     Bid newBid1 = randomBid(winningBid.ordinal());
-     Bid newBid2 = randomBid(newBid1.ordinal());
-     Bid newBid3 = randomBid(newBid2.ordinal());
+     Bid newBid1 = randomBid();
+   //  Logging.logEvent(newBid1.toString());
+     Bid newBid2 = randomBid();
+   //  Logging.logEvent(newBid2.toString());
+     Bid newBid3 = randomBid();
+    // Logging.logEvent(newBid3.toString());
 
      playersBidsList.get(0).addBid(newBid1);
      playersBidsList.get(1).addBid(newBid2);
      playersBidsList.get(2).addBid(newBid3);
 
-     System.out.println (newBid1);
-     System.out.println (newBid2);
-     System.out.println (newBid3);
+     Logging.logEvent(newBid1 + " " + newBid2 + " " + newBid3);
+     Logging.logEvent("Winning bid is " + winningBid);
 
 
-     if ((newBid1 == Bid.PASS) && (newBid2 == Bid.PASS) && (newBid2 == Bid.PASS))
+     if ((newBid1 == Bid.PASS) && (newBid2 == Bid.PASS) && (newBid3 == Bid.PASS))
      {
          Logging.logEvent("passes start");
       //   PlayType.play(pass);
@@ -124,6 +156,7 @@ public class Contract {
              Logging.logEvent("trick start");
           //   PlayType.play(tricks);
          }
+
 
 
  }
