@@ -18,7 +18,7 @@ public class Game {
         Logging.logEvent("Players are: " + Game.players);
 
         Lap lap1 = new Lap(Game.players);
-        lap1.assignCards();
+
       /*  Lap lap2 = new Lap(Game.players);
         lap2.assignCards();
         Lap lap3 = new Lap(Game.players);
@@ -34,12 +34,7 @@ public class Game {
             System.out.println("Player " + Game.players.get(i).toString() + " place is " + Game.players.get(i).getPlace());
         }
 
-        Contract contract = new Contract();
-        contract.biddingOrder();
 
-
-        for (int i = 0; i < 200; i++)
-        contract.bidding();
 
         GameType gameType = new GameType();
 }

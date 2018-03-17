@@ -13,6 +13,10 @@ public class Lap {
     private Contract contract;
     private PlayersBids playersBids;
     private Player dealer;
+    private Tricks tricks;
+   // private Passes passes;
+  //  private Miser miser;
+
 
     public static Player dealerGlobal = null; //here stored dealer from last lap, so dealer for the next Lap will be chosen using clockwise method nextDealer
 
@@ -25,6 +29,9 @@ public class Lap {
     {
         this.players = players;
         nextDealer();
+        assignCards();
+        contract = new Contract();
+        contract.bidding();
     }
     // Method for picking a random card from a Cards enum
     private Cards randomCard() {
@@ -58,11 +65,18 @@ public class Lap {
     public void assignCards ()
     {
         createCardsSet();
-        for (Player player: players)
+
+        CardSet cardSetDealer = new CardSet(dealerGlobal);
+
+        ArrayList<Player> players1 = (ArrayList<Player>) players.clone();
+        players1.remove(dealerGlobal);
+        for (Player player: players1)
         {
             CardSet cardSet = new CardSet(player);
             playerCardsList.add(cardSet);
         }
+
+        playerCardsList.add(cardSetDealer);
 
         Iterator<Cards> iterator = playerCardses.iterator();
 
@@ -84,6 +98,8 @@ public class Lap {
                 set4.add(iterator.next());
             }
         }
+
+
 
         playerCardsList.get(0).setCardsSet(set1);
         playerCardsList.get(1).setCardsSet(set2);

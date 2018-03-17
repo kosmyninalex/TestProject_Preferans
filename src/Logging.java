@@ -4,11 +4,11 @@ public class Logging {
     private static String fileName = "log.txt";
     public static void logEvent (String s)
     {
-        String res = "TEST_preferans " +  CurrentDate.getDate() + ". Event: " + s + "\r\n";
+        String res = "TEST_preferans " +  CurrentDate.getDate() + ". Event: " + s;
 
         try {
             PrintWriter fileOutputStream = new PrintWriter(new FileOutputStream(new File(fileName), true));
-            fileOutputStream.write(res);
+            fileOutputStream.write(res + "\r\n");
             fileOutputStream.close();
         } catch (FileNotFoundException e) {
             System.out.println ("Something bad has happened in our logger");
