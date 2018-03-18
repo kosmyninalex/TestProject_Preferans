@@ -12,6 +12,8 @@ public class Tricks {
     private HashMap<Player, Bid> finalBidWithPlayer = new HashMap<Player, Bid>();
     private Suit trump = null;
 
+    private ArrayList<PlayerTricks> playerTricksList = new ArrayList<PlayerTricks>();
+
     public void tricksBidding() {
         for (PlayersBids playersBids : playersBidsList) {
             if (playersBids.getPlayer() != winningBidder) {
@@ -52,6 +54,13 @@ public class Tricks {
         tricksBidding();
         droppingTwoCards();
 
+        ArrayList<Player> playersList = new ArrayList<Player>();
+        ArrayList<CardSet> playerCardsList1 = (ArrayList<CardSet>) playerCardsList.clone();
+        playerCardsList1.remove(buyin);
+        playerCardsList1.remove(winningBidderSet);
+
+        playersList.add(winningBidder);
+
         int whistsCount = 0;
         int passCount = 0;
         for (PlayersBids playersBids: playersBidsList) {
@@ -60,6 +69,7 @@ public class Tricks {
                 ArrayList<Bid> bids = playersBids.getBids();
                 Bid finalBid = bids.get(bids.size() - 1);
                 finalBidWithPlayer.put(player, finalBid);
+                playersList.add(player);
                 if (finalBid == Bid.WHIST)
                 {
                     whistsCount++;
@@ -74,6 +84,27 @@ public class Tricks {
 
         if (whistsCount == 2)
         {
+            for (int i = 0; i < 10; i ++)
+            {
+                Cards card = winningBidderSet.getCardSet().get(i);
+                PlayerTricks playerTricks = new PlayerTricks(winningBidder, card);
+                playerTricksList.add(playerTricks);
+
+                Cards card1 = PlayerTricks.pickAppropriateCard(playerCardsList1.get(0), trump, card.getSuit());
+                Player player1 = playerCardsList1.get(0).getPlayer();
+                PlayerTricks playerTricks1 = new PlayerTricks(player1, card1);
+                playerTricksList.add(playerTricks1);
+
+                Cards card2 = PlayerTricks.pickAppropriateCard(playerCardsList1.get(1), trump, card.getSuit());
+                Player player2 = playerCardsList1.get(1).getPlayer();
+                PlayerTricks playerTricks2 = new PlayerTricks(player2, card1);
+                playerTricksList.add(playerTricks2);
+
+
+                PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList); // Wining Player with his card in this 1 of 10 tricks
+
+
+            }
 
         }
 
@@ -110,6 +141,7 @@ public class Tricks {
 
         trump = winningBid.getTrump();
         Logging.logEvent(trump.toString());
+        finalBidWithPlayer.put(winningBidder, winningBid);
 
 
         }
