@@ -31,7 +31,10 @@ public class Lap {
         nextDealer();
         assignCards();
         contract = new Contract();
-        contract.bidding();
+
+
+    contract.bidding();
+
     }
     // Method for picking a random card from a Cards enum
     private Cards randomCard() {

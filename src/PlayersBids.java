@@ -36,14 +36,19 @@ public class PlayersBids {
         return isMisere;
     }
 
-    public void setPassStatus()
+    public void setPass()
     {
         isPass = true;
     }
 
-    public void setMisereStatus()
+    public void setMisere()
     {
        isMisere = true;
+    }
+
+    public void removeBid(Bid bid)
+    {
+        bids.remove(bid);
     }
 
 

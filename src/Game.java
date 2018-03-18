@@ -24,8 +24,8 @@ public class Game {
         Lap lap3 = new Lap(Game.players);
         lap3.assignCards();*/
 
-        System.out.println ("Testing dealers assignment--------------");
-        System.out.println (lap1.getDealer());
+    //    System.out.println ("Testing dealers assignment--------------");
+     //   System.out.println (lap1.getDealer());
   /*      System.out.println (lap2.getDealer());
         System.out.println (lap3.getDealer());
 */
