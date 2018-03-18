@@ -1,57 +1,91 @@
+import com.oracle.tools.packager.Log;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Tricks {
     private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
     private Bid winningBid = null;
     private Player winningBidder = null;
+    private ArrayList<CardSet> playerCardsList = new ArrayList<CardSet>();
+    private CardSet winningBidderSet = null;
+    private CardSet buyin = null;
 
-    public void tricksBidding (ArrayList<PlayersBids> playersBidsList, Bid winningBid, Player winningBidder)
-    {
-        playersBidsList = playersBidsList;
-        this.winningBidder = winningBidder;
-        this.winningBid = winningBid;
-
-        for (PlayersBids playersBids: playersBidsList)
-        {
-            if (playersBids.getPlayer() != winningBidder)
-            {
+    public void tricksBidding() {
+        for (PlayersBids playersBids : playersBidsList) {
+            if (playersBids.getPlayer() != winningBidder) {
                 playersBids.addBid(randomBidTricks(false));
-            }
-            else
-            {
+            } else {
                 playersBids.addBid(randomBidTricks(true));
             }
         }
 
-        Logging.logEvent("Tricks decisions (PASS means that player not whistsing, WHIST - whisting, new Winning bid or duplicated winning BID - for the winner)" + playersBidsList);
-        tricksPlay();
+        Logging.logEvent("Tricks decisions calculated (PASS means that player not whistsing, WHIST - whisting, new Winning bid or duplicated winning BID - for the winner)");
+        Logging.logEvent(playersBidsList.toString());
 
     }
 
-    public Bid randomBidTricks (boolean isWinning)
-    {
+    public Bid randomBidTricks(boolean isWinning) {
         Random random = new Random();
         Bid[] bids = Bid.values();
-        if (isWinning)
-        {
+        if (isWinning) {
             Bid newBid = bids[random.nextInt(26)];
             if (newBid.ordinal() > winningBid.ordinal()) {
                 return newBid;
-            }
-            else
-            {
+            } else {
                 return winningBid;
             }
 
         }
-            Bid newBid = bids[random.nextInt(1) + 26];
-            return newBid;
+        Bid newBid = bids[random.nextInt(1) + 26];
+        return newBid;
     }
 
-    public void tricksPlay()
+    public void tricksPlay(ArrayList<PlayersBids> playersBidsList, Bid winningBid, Player winningBidder, ArrayList<CardSet> playerCardsList)
     {
+        this.playersBidsList = playersBidsList;
+        this.winningBidder = winningBidder;
+        this.winningBid = winningBid;
+        this.playerCardsList = playerCardsList;
+
+        tricksBidding();
+        droppingTwoCards();
+
+
 
 
     }
+
+    public void droppingTwoCards()
+    {
+        for (CardSet cardSet: playerCardsList)
+        {
+            if (cardSet.getPlayer() == winningBidder)
+            {
+                winningBidderSet = cardSet;
+            }
+            if (cardSet.getPlayer() == Lap.dealerGlobal)
+            {
+                buyin = cardSet;
+            }
+        }
+        ArrayList <Cards> arrayList = winningBidderSet.getCardSet();
+        arrayList.addAll(buyin.getCardSet());
+
+        Logging.logEvent("Buy in opened. Its cards are: " + buyin.getCardSet());
+        Random random = new Random();
+
+        Cards card1 = arrayList.get(random.nextInt(12));
+        Cards card2 = arrayList.get(random.nextInt(11));
+        arrayList.remove(card2);
+        arrayList.remove(card1);
+        Logging.logEvent(winningBidder.toString() + " Player dropped 2 cards. It's: " + card1 + " and " + card2);
+        Logging.logEvent(winningBidderSet.toString());
+        }
+
+
+
+
 }

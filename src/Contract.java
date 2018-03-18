@@ -12,6 +12,12 @@ public class Contract {
     private  ArrayList<Player> biddingOrder;
     private  boolean isMiserGame = false;
     private  boolean isTricksGame = false;
+    private ArrayList <CardSet> playerCardsList;
+
+    public Contract (ArrayList <CardSet> playerCardsList)
+    {
+        this.playerCardsList = playerCardsList;
+    }
 
     private void setContractTurns ()
     {
@@ -71,7 +77,7 @@ public class Contract {
 
 
     //Method for determining a bidding order of players
-    public void biddingOrder ()
+    public void biddingOrderMethod ()
     {
         biddingOrder = new ArrayList<>();
         for (int i = 0; i < 4; i++)
@@ -133,14 +139,16 @@ public class Contract {
  public void bidding ()
  {
      setContractTurns();
-     biddingOrder();
+     biddingOrderMethod();
      createBidsLists();
 
-     Logging.logEvent("Bidding order is " + biddingOrder);
+     biddingOrder.remove(Lap.dealerGlobal);
+
+     Logging.logEvent("Bidding order (clockwise) is  " + biddingOrder );
      isMiserGame = false;
 
      winningBid = Bid.SIX_SPADE;
-     System.out.println ("New contract");
+     Logging.logEvent ("New contract. E.g. A new trade has started");
 
 
      Bid newBid1 = randomBid();
@@ -185,10 +193,10 @@ public class Contract {
          }
          else
          {
-             Logging.logEvent("trick start");
+             Logging.logEvent(" A tricks game started");
              tricksBidding(newBid1, newBid2, newBid3);
              Tricks tricks = new Tricks();
-             tricks.tricksBidding(playersBidsList, winningBid, winningBidder);
+             tricks.tricksPlay(playersBidsList, winningBid, winningBidder, playerCardsList);
           //   PlayType.play(tricks);
          }
  }

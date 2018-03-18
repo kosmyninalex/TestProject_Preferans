@@ -61,7 +61,7 @@ public class PlayersBids {
         {
             res = res + " " + bid;
         }
-        return player + " his bids are: " + bids;
+        return "Player " + player + ". His bids are: " + bids;
     }
 
 

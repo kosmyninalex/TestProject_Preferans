@@ -1,3 +1,5 @@
+import com.oracle.tools.packager.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,15 +9,24 @@ public class Game {
     public static Player dealer = null;
 
     public static void main(String[] args) {
+        Logging.logEvent("--------------------------------------------------------------------------------------------------------------------");
+        Logging.logEvent("A new game started");
         Logging.logEvent("Initializing four players");
         Player firstPlayer = new Player("Ilya");
         Player secondPlayer = new Player("Dobrynya");
         Player thirdPlayer = new Player("Alyosha");
         Player fourthPlayer = new Player("Gunslinger");
 
-        Game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
 
+
+        Game.players = new ArrayList<Player>(Arrays.asList(firstPlayer, secondPlayer, thirdPlayer, fourthPlayer));
         Logging.logEvent("Players are: " + Game.players);
+        Logging.logEvent("Players chose places round the table: ");
+        for (int i = 0; i < Game.players.size(); i++) {
+            Logging.logEvent("Player " + Game.players.get(i).toString() + " place is " + Game.players.get(i).getPlace());
+        }
+
+
 
         Lap lap1 = new Lap(Game.players);
 
@@ -30,9 +41,7 @@ public class Game {
         System.out.println (lap3.getDealer());
 */
 
-        for (int i = 0; i < Game.players.size(); i++) {
-            System.out.println("Player " + Game.players.get(i).toString() + " place is " + Game.players.get(i).getPlace());
-        }
+
 
 
 

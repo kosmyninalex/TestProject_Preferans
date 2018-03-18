@@ -14,23 +14,24 @@ public class Lap {
     private PlayersBids playersBids;
     private Player dealer;
     private Tricks tricks;
+    private ArrayList <CardSet> playerCardsList = new ArrayList<CardSet>();
    // private Passes passes;
   //  private Miser miser;
 
 
     public static Player dealerGlobal = null; //here stored dealer from last lap, so dealer for the next Lap will be chosen using clockwise method nextDealer
 
-    private HashSet <Cards> set1 = new HashSet<>();
-    private HashSet <Cards> set2 = new HashSet<>();
-    private HashSet <Cards> set3 = new HashSet<>();
-    private HashSet <Cards> set4 = new HashSet<>();
+    private ArrayList <Cards> set1 = new ArrayList<>();
+    private ArrayList <Cards> set2 = new ArrayList<>();
+    private ArrayList <Cards> set3 = new ArrayList<>();
+    private ArrayList <Cards> set4 = new ArrayList<>();
 
     public Lap(ArrayList<Player> players)
     {
         this.players = players;
         nextDealer();
         assignCards();
-        contract = new Contract();
+        contract = new Contract(playerCardsList);
 
 
     contract.bidding();
@@ -60,13 +61,16 @@ public class Lap {
     }
 
 
-    private ArrayList <CardSet> playerCardsList = new ArrayList<CardSet>();
+
 
 
     //Method for assigning cards to players
 
     public void assignCards ()
     {
+
+
+        Logging.logEvent("Shuffling cards");
         createCardsSet();
 
         CardSet cardSetDealer = new CardSet(dealerGlobal);
@@ -83,6 +87,7 @@ public class Lap {
 
         Iterator<Cards> iterator = playerCardses.iterator();
 
+        Logging.logEvent("Assigning cards");
         // Giving two cards to each player on each turn. Putting two cards to buy-in after second turn
         for (int i = 0; i < 5; i++)
         {
@@ -111,7 +116,7 @@ public class Lap {
 
         for (CardSet cardSet: playerCardsList)
         {
-            System.out.println (cardSet);
+            Logging.logEvent(cardSet.toString());
         }
 
     }
@@ -125,9 +130,7 @@ public class Lap {
 
             dealerGlobal = players.get(dealerNumber);
             dealer = dealerGlobal;
-            System.out.println("Assigned dealer number is " + dealerNumber);
-            System.out.println ("Dealer is " + dealer );
-            System.out.println ("Dealer global is " + dealerGlobal );
+            //  Logging.logEvent("Assigned dealer number is " + dealerNumber);
 
         }
 
@@ -149,6 +152,9 @@ public class Lap {
             dealerGlobal = dealer;
 
         }
+
+
+        Logging.logEvent ("Dealer has been randomly chosen. It's " + dealer );
 
 }
 
