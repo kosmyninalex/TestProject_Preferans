@@ -1,9 +1,6 @@
 import com.oracle.tools.packager.Log;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 public class Tricks {
     private ArrayList<PlayersBids> playersBidsList = new ArrayList<PlayersBids>();
@@ -12,6 +9,8 @@ public class Tricks {
     private ArrayList<CardSet> playerCardsList = new ArrayList<CardSet>();
     private CardSet winningBidderSet = null;
     private CardSet buyin = null;
+    private HashMap<Player, Bid> finalBidWithPlayer = new HashMap<Player, Bid>();
+    private Suit trump = null;
 
     public void tricksBidding() {
         for (PlayersBids playersBids : playersBidsList) {
@@ -53,10 +52,35 @@ public class Tricks {
         tricksBidding();
         droppingTwoCards();
 
+        int whistsCount = 0;
+        int passCount = 0;
+        for (PlayersBids playersBids: playersBidsList) {
+            Player player = playersBids.getPlayer();
+            if ((player != winningBidder) && (player != Lap.dealerGlobal)) {
+                ArrayList<Bid> bids = playersBids.getBids();
+                Bid finalBid = bids.get(bids.size() - 1);
+                finalBidWithPlayer.put(player, finalBid);
+                if (finalBid == Bid.WHIST)
+                {
+                    whistsCount++;
+                }
+                if (finalBid == Bid.PASS)
+                {
+                    passCount++;
+                }
+            }
+        }
+
+
+        if (whistsCount == 2)
+        {
+
+        }
 
 
 
     }
+
 
     public void droppingTwoCards()
     {
@@ -83,6 +107,11 @@ public class Tricks {
         arrayList.remove(card1);
         Logging.logEvent(winningBidder.toString() + " Player dropped 2 cards. It's: " + card1 + " and " + card2);
         Logging.logEvent(winningBidderSet.toString());
+
+        trump = winningBid.getTrump();
+        Logging.logEvent(trump.toString());
+
+
         }
 
 
