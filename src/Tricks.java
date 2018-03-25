@@ -140,7 +140,7 @@ public class Tricks {
         Logging.logEvent(winningBidderSet.toString());
 
         trump = winningBid.getTrump();
-        Logging.logEvent(trump.toString());
+        Logging.logEvent (trump.toString());
         finalBidWithPlayer.put(winningBidder, winningBid);
 
 
