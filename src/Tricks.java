@@ -1,4 +1,4 @@
-
+//Testing tricks_edited branch
 import java.util.*;
 
 public class Tricks {
