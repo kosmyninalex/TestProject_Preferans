@@ -100,7 +100,9 @@ public class Tricks {
                 playerTricksList.add(playerTricks2);
 
 
+                Logging.logEvent("Playing cards are: " + playerTricksList);
                 PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList); // Wining Player with his card in this 1 of 10 tricks
+                Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
 
 
             }
