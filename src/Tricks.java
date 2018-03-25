@@ -132,14 +132,15 @@ public class Tricks {
         Random random = new Random();
 
         Cards card1 = arrayList.get(random.nextInt(12));
+        arrayList.remove(card1);
         Cards card2 = arrayList.get(random.nextInt(11));
         arrayList.remove(card2);
-        arrayList.remove(card1);
+
         Logging.logEvent(winningBidder.toString() + " Player dropped 2 cards. It's: " + card1 + " and " + card2);
         Logging.logEvent(winningBidderSet.toString());
 
         trump = winningBid.getTrump();
-        Logging.logEvent (trump.toString());
+//        Logging.logEvent (trump.toString());
         finalBidWithPlayer.put(winningBidder, winningBid);
 
 
