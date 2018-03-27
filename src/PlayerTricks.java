@@ -22,7 +22,7 @@ public class PlayerTricks {
         return player + " " + card;
     }
 
-
+// not handled case when not trump nor approrpiate suit is added
     public static PlayerTricks compareCards (ArrayList<PlayerTricks> playerTricksList)
     {
         PlayerTricks max = playerTricksList.get(0);
@@ -50,6 +50,7 @@ public class PlayerTricks {
             if ((newCard.getSuit() == trump) || (newCard.getSuit() == suit))
             {
                 resultCard = newCard;
+                cardSet.getCardSet().remove(resultCard);
             }
             else
             {
@@ -59,6 +60,7 @@ public class PlayerTricks {
                 else
                 {
                     resultCard = newCard;
+                    cardSet.getCardSet().remove(resultCard);
                 }
             }
 

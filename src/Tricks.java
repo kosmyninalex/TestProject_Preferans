@@ -96,15 +96,15 @@ public class Tricks {
 
                 Cards card2 = PlayerTricks.pickAppropriateCard(playerCardsList1.get(1), trump, card.getSuit());
                 Player player2 = playerCardsList1.get(1).getPlayer();
-                PlayerTricks playerTricks2 = new PlayerTricks(player2, card1);
+                PlayerTricks playerTricks2 = new PlayerTricks(player2, card2);
                 playerTricksList.add(playerTricks2);
 
 
-                Logging.logEvent("Playing cards are: " + playerTricksList);
+                Logging.logEvent("Playing cards are: " + playerTricksList + " .Trump is " + trump);
                 PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList); // Wining Player with his card in this 1 of 10 tricks
                 Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
 
-
+                playerTricksList.removeAll(playerTricksList);
             }
 
         }
