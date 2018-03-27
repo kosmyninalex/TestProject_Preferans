@@ -27,8 +27,9 @@ public class Game {
 
 
 
-        Lap lap1 = new Lap(Game.players);
-
+   //     for (int i = 0; i < 100; i++) {
+            Lap lap1 = new Lap(Game.players);
+     //   }
       /*  Lap lap2 = new Lap(Game.players);
         lap2.assignCards();
         Lap lap3 = new Lap(Game.players);

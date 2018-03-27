@@ -12,6 +12,16 @@ public class PlayerTricks {
 
     }
 
+    public Player getPlayer()
+    {
+        return player;
+    }
+
+    public String toString ()
+    {
+        return player + " " + card;
+    }
+
 
     public static PlayerTricks compareCards (ArrayList<PlayerTricks> playerTricksList)
     {

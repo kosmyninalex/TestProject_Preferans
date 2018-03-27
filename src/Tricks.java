@@ -1,4 +1,4 @@
-//Testing tricks_edited branch
+//Testing tricks_edited branch 1
 import java.util.*;
 
 public class Tricks {
@@ -100,7 +100,9 @@ public class Tricks {
                 playerTricksList.add(playerTricks2);
 
 
+                Logging.logEvent("Playing cards are: " + playerTricksList);
                 PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList); // Wining Player with his card in this 1 of 10 tricks
+                Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
 
 
             }
@@ -132,14 +134,15 @@ public class Tricks {
         Random random = new Random();
 
         Cards card1 = arrayList.get(random.nextInt(12));
+        arrayList.remove(card1);
         Cards card2 = arrayList.get(random.nextInt(11));
         arrayList.remove(card2);
-        arrayList.remove(card1);
+
         Logging.logEvent(winningBidder.toString() + " Player dropped 2 cards. It's: " + card1 + " and " + card2);
         Logging.logEvent(winningBidderSet.toString());
 
         trump = winningBid.getTrump();
-        Logging.logEvent(trump.toString());
+//        Logging.logEvent (trump.toString());
         finalBidWithPlayer.put(winningBidder, winningBid);
 
 
