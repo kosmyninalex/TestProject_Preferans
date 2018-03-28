@@ -23,13 +23,16 @@ public class PlayerTricks {
     }
 
 // not handled case when not trump nor approrpiate suit is added
-    public static PlayerTricks compareCards (ArrayList<PlayerTricks> playerTricksList)
+    public static PlayerTricks compareCards (ArrayList<PlayerTricks> playerTricksList, Suit trump, Suit suit)
     {
         PlayerTricks max = playerTricksList.get(0);
 
+
+
         for (PlayerTricks playerTricks: playerTricksList)
         {
-            if (playerTricks.card.ordinal() > max.card.ordinal())
+            Suit currentSuit = playerTricks.card.getSuit();
+            if ((playerTricks.card.ordinal() > max.card.ordinal()) && ((currentSuit.equals(trump)) || (currentSuit.equals(suit))))
             {
                 max = playerTricks;
             }

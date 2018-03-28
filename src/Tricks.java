@@ -101,7 +101,7 @@ public class Tricks {
 
 
                 Logging.logEvent("Playing cards are: " + playerTricksList + " .Trump is " + trump);
-                PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList); // Wining Player with his card in this 1 of 10 tricks
+                PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList, trump, card.getSuit()); // Wining Player with his card in this 1 of 10 tricks
                 Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
 
                 playerTricksList.removeAll(playerTricksList);
