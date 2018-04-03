@@ -10,6 +10,7 @@ public class Tricks {
     private CardSet buyin = null;
     private HashMap<Player, Bid> finalBidWithPlayer = new HashMap<Player, Bid>();
     private Suit trump = null;
+    private HashMap<Player, Integer> mapPlayersCount = new HashMap<Player, Integer>();
 
     private ArrayList<PlayerTricks> playerTricksList = new ArrayList<PlayerTricks>();
 
@@ -102,10 +103,19 @@ public class Tricks {
 
                 Logging.logEvent("Playing cards are: " + playerTricksList + " .Trump is " + trump);
                 PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList, trump, card.getSuit()); // Wining Player with his card in this 1 of 10 tricks
+                if (mapPlayersCount.containsKey(winnerOfTrick.getPlayer()))
+                {
+                    mapPlayersCount.put(winnerOfTrick.getPlayer(), mapPlayersCount.get(winnerOfTrick.getPlayer()) + 1);
+                }
+                else
+                {
+                    mapPlayersCount.put(winnerOfTrick.getPlayer(), 1);
+                }
                 Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
 
                 playerTricksList.removeAll(playerTricksList);
             }
+            Logging.logEvent("mapPlayersCount results are: " + mapPlayersCount);
 
         }
 
