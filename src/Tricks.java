@@ -11,8 +11,8 @@ public class Tricks {
     private HashMap<Player, Bid> finalBidWithPlayer = new HashMap<Player, Bid>();
     private Suit trump = null;
     private HashMap<Player, Integer> mapPlayersCount = new HashMap<Player, Integer>();
-
     private ArrayList<PlayerTricks> playerTricksList = new ArrayList<PlayerTricks>();
+    private boolean isDealerPlayedTricks;
 
     public void tricksBidding() {
         for (PlayersBids playersBids : playersBidsList) {
@@ -82,7 +82,7 @@ public class Tricks {
         }
 
 
-        if (whistsCount == 2)
+        if ((whistsCount == 2) || (whistsCount == 1))
         {
             for (int i = 0; i < 10; i ++)
             {
@@ -116,11 +116,58 @@ public class Tricks {
                 playerTricksList.removeAll(playerTricksList);
             }
             Logging.logEvent("mapPlayersCount results are: " + mapPlayersCount);
+        }
+
+        if (whistsCount == 0)
+        {
+            if (dealerDecidedToPlayNullWhists())
+            {
+                for (int i = 0; i < 10; i ++)
+                {
+                    Cards card = winningBidderSet.getCardSet().get(i);
+                    PlayerTricks playerTricks = new PlayerTricks(winningBidder, card);
+                    playerTricksList.add(playerTricks);
+
+                    Cards card1 = PlayerTricks.pickAppropriateCard(playerCardsList1.get(0), trump, card.getSuit());
+                    Player player1 = playerCardsList1.get(0).getPlayer();
+                    PlayerTricks playerTricks1 = new PlayerTricks(player1, card1);
+                    playerTricksList.add(playerTricks1);
+
+                    Cards card2 = PlayerTricks.pickAppropriateCard(playerCardsList1.get(1), trump, card.getSuit());
+                    Player player2 = playerCardsList1.get(1).getPlayer();
+                    PlayerTricks playerTricks2 = new PlayerTricks(player2, card2);
+                    playerTricksList.add(playerTricks2);
+
+
+                    Logging.logEvent("Playing cards are: " + playerTricksList + " .Trump is " + trump);
+                    PlayerTricks winnerOfTrick = PlayerTricks.compareCards(playerTricksList, trump, card.getSuit()); // Wining Player with his card in this 1 of 10 tricks
+                    if (mapPlayersCount.containsKey(winnerOfTrick.getPlayer()))
+                    {
+                        mapPlayersCount.put(winnerOfTrick.getPlayer(), mapPlayersCount.get(winnerOfTrick.getPlayer()) + 1);
+                    }
+                    else
+                    {
+                        mapPlayersCount.put(winnerOfTrick.getPlayer(), 1);
+                    }
+                    Logging.logEvent("Winning player is " + winnerOfTrick.getPlayer());
+
+                    playerTricksList.removeAll(playerTricksList);
+                }
+                Logging.logEvent("mapPlayersCount results are: " + mapPlayersCount);
+            }
+            }
+
+
 
         }
 
 
 
+
+
+    public boolean dealerDecidedToPlayNullWhists ()
+    {
+        return Math.random() < 0.5;
     }
 
 

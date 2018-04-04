@@ -4,11 +4,11 @@ public class Player {
     private String name;
     private static ArrayList <Place> seats = new ArrayList<>(Arrays.asList(Place.values()));
 
-    private int pool;
-    private int mountain;
-    private int leftWhist;
-    private int centerWhist;
-    private int rightWhist;
+    private int pool = 0;
+    private int mountain = 0;
+    private int leftWhist = 0;
+    private int centerWhist = 0;
+    private int rightWhist = 0;
 
  //   private boolean isDealer = false;
     private Place place;
@@ -32,6 +32,31 @@ public class Player {
     public void setPlace(Place place)
     {
         this.place = place;
+    }
+
+    public void updatePool (int poolPoints)
+    {
+        this.pool = this.pool + poolPoints;
+    }
+
+    public void updateMountain (int mountainPoints)
+    {
+        this.mountain = this.mountain + mountainPoints;
+    }
+
+    public void leftWhistUpdate(int leftWhistPoints)
+    {
+        this.leftWhist = this.leftWhist + leftWhistPoints;
+    }
+
+    public void rightWhistUpdate (int rightWhistPoints)
+    {
+        this.rightWhist = this.rightWhist + rightWhistPoints;
+    }
+
+    public void centerWhistUpdate (int centerWhistPoints)
+    {
+        this.centerWhist = this.centerWhist + centerWhistPoints;
     }
 
 
